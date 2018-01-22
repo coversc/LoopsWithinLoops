@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of SEQUENCES OF SUB-SEQUENCES.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Caitlin Coverstone.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 
 def main():
@@ -116,8 +116,14 @@ def multiply_numbers(sequence_of_lists):
        and the elements of the lists can be multiplied by an integer.
        [FYI: This 'can be multiplied ...' is an example of DUCK TYPING.]
     """
+
+    for j in range(len(sequence_of_lists)):
+        sub_list=sequence_of_lists[j]
+        for k in range(len(sub_list)):
+            sub_list[k] = sub_list[k]*(j+1)
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #  ** READ THE TESTS that have been written for you (ABOVE).
     #  ** ASK QUESTIONS if you do not understand the TESTS (ABOVE).
     #
@@ -133,7 +139,7 @@ def multiply_numbers(sequence_of_lists):
 def run_test_sum_numbers():
     """ Tests the    sum_numbers    function. """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement this TEST function.
+    # DONE: 3. Implement this TEST function.
     #   It TESTS the  sum_numbers  function defined below.
     #   Include at least **   3   ** tests (we wrote two for you).
     # ------------------------------------------------------------------
@@ -152,7 +158,22 @@ def run_test_sum_numbers():
     answer = sum_numbers(([], [5], []))
     print('Expected and actual are:', expected, answer)
 
-    # TO DO 3 (continued): Add your ADDITIONAL test(s) here:
+    # DONE 3 (continued): Add your ADDITIONAL test(s) here:
+
+    # Test 3:
+    expected = 351
+    answer = sum_numbers([(10, 1, 4), (2, 320), [2, 2, 3, 7]])
+    print('Expected and actual are:', expected, answer)
+
+    # Test 4:
+    expected = 3516
+    answer = sum_numbers([(12, 3214, 13), [11, 232, 33, 1]])
+    print('Expected and actual are:', expected, answer)
+
+    # Test 5:
+    expected = 166
+    answer = sum_numbers([(13, 32, 53), (12, 0), [13, 32, 5, 6]])
+    print('Expected and actual are:', expected, answer)
 
 
 def sum_numbers(seq_seq):
@@ -165,8 +186,16 @@ def sum_numbers(seq_seq):
     Preconditions:  the given argument is a sequences of sequences,
                     and each item in the subsequences is a number.
     """
+
+    sum = 0
+    for j in range(len(seq_seq)):
+        sub_list=seq_seq[j]
+        for k in range(len(sub_list)):
+            sum = sum + sub_list[k]
+    return sum
+
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
 
@@ -216,8 +245,15 @@ def print_characters(sequence_of_strings):
        !
     Precondition:  the given argument is a sequence of strings.
     """
+
+    for j in range(len(sequence_of_strings)):
+        sub_list=sequence_of_strings[j]
+        for k in range(len(sub_list)):
+            print(sub_list[k])
+        print()
+
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #  ** READ THE TESTS that have been written for you (ABOVE).
     #  ** ASK QUESTIONS if you do not understand the TESTS (ABOVE).
     # ------------------------------------------------------------------
@@ -269,6 +305,17 @@ def print_characters_slanted(sequence_of_strings):
             !
     Precondition:  the given argument is a sequence of strings.
     """
+
+
+    for j in range(len(sequence_of_strings)):
+        sub_list=sequence_of_strings[j]
+        for k in range(len(sub_list)):
+            print(k*' ', end='')
+            print(sub_list[k])
+        print()
+
+
+
     # ------------------------------------------------------------------
     # TODO: 6. Implement and test this function.
     #  ** READ THE TESTS that have been written for you (ABOVE).
