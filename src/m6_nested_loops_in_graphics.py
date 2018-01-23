@@ -3,15 +3,15 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Caitlin Coverstone.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
 
 def main():
     """ Calls the other functions to demonstrate them. """
-    run_test_draw_L()
+    #run_test_draw_L()
     run_test_draw_wall_on_right()
 
 
@@ -79,8 +79,52 @@ def draw_L(window, circle, r, c):
       :type c: int
     and m and n are small, positive integers.
     """
+
+    original_x = circle.center.x
+    original_y = circle.center.y
+    radius = circle.radius
+
+    x = original_x
+    y = original_y
+    for _ in range(r):
+        for _ in range(3):
+            new_circle = rg.Circle(rg.Point(x,y), radius)
+            new_circle.attach_to(window)
+            window.render()
+
+            x = x + (2 * radius)
+
+        y = y + 2 * radius
+        x = original_x
+
+    y = original_y + r*(2*radius)
+    for _ in range(3):
+        for _ in range(3):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.attach_to(window)
+            window.render()
+
+            x = x + (2*radius)
+
+        y = y + (2*radius)
+        x = original_x
+
+    y = original_y + r *(2 * radius)
+
+    x = original_x + 3* (2*radius)
+    for _ in range(3):
+        for _ in range(c):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.attach_to(window)
+            window.render()
+
+            x = x + (2 * radius)
+
+        y = y + (2 * radius)
+        x = original_x + 3* (2*radius)
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
@@ -120,8 +164,36 @@ def draw_wall_on_right(rectangle, n, window):
       :type window: rg.RoseWindow
     and n is a small, positive integer.
     """
+
+
+    original_x1 = rectangle.get_upper_right_corner()
+    original_x2 = rectangle.get_lower_left_corner()
+
+    width = original_x1.x - original_x2.x
+    length = original_x1.y - original_x2.y
+
+    x1 = original_x1.x
+    y1 = original_x1.y
+    x2 = original_x2.x
+    y2 = original_x2.y
+
+    for j in range(n):
+        for k in range(j+1):
+            new_rectangle = rg.Rectangle(rg.Point(x1,y1), rg.Point(x2,y2))
+            new_rectangle.attach_to(window)
+            window.render(0.1)
+
+            x1 = x1 - width
+            x2 = x2 - width
+
+        y1 = y1 - length
+        y2 = y2 - length
+        x1 = original_x1.x
+        x2 = original_x2.x
+
+
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
